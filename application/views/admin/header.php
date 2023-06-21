@@ -13,7 +13,7 @@ $sub_menu3   = strtolower($this->uri->segment(3));
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title><?php echo $title; ?> - Aplikasi Indeks Kepuasan Masyarakat</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
+    <link rel="icon" type="image/png" href="assets/images/logo-unila.png" />
     <!-- Custom Stylesheet -->
     <link href="assets/plugins/tables/css/datatable/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">

@@ -7607,7 +7607,7 @@ sub {
   position: absolute;
   left: 0;
   top: 0; 
-  background: #111B27;
+  background: #ffffff;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15);
   transition: all .2s ease; }
   .nav-header .logo-abbr {
@@ -7618,6 +7618,7 @@ sub {
     .nav-header {
       width: 14.375rem; } }
   .nav-header .brand-logo {
+    background: #ffffff;
     z-index: 999; }
     .nav-header .brand-logo a {
       padding: 1.607rem 1.8125rem;
