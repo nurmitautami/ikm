@@ -42,7 +42,7 @@
                     <div class="form-input-content">
                         <div class="card login-form mb-0">
                             <div class="card-body pt-5">
-                                <a class="text-center" href=""> <h4>IKM PAJAK KENDARAAN</h4></a>
+                                <a class="text-center" href=""> <h4>INDEKS KEPUASAN MASYARAKAT</h4></a>
                                 <?php if($this->session->flashdata('error')): ?>
                                     <div class="alert alert-danger"><strong><i class="fa fa-times-circle"></i></strong> <?php echo $this->session->flashdata('error'); ?></div>
                                 <?php endif; ?>

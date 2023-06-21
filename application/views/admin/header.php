@@ -73,17 +73,33 @@ $sub_menu3   = strtolower($this->uri->segment(3));
         <!--**********************************
             Nav header start
         ***********************************-->
+        <style>
+        .brand-title img {
+        width: 205px; /* Ubah ukuran gambar sesuai kebutuhan */
+        height: auto; /* Sesuaikan tinggi gambar agar tetap proporsional */
+        position: absolute;
+        top: 15px; /* Ubah posisi vertikal gambar */
+        left: 20px; /* Ubah posisi horizontal gambar */
+        }
+        </style> 
+
+
+
+
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="admin/dashboard">
-                    <b class="logo-abbr"><img src="assets/images/logo.png" alt=""> </b>
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
+                </svg>
                     <span class="logo-compact"><img src="assets/images/logo-compact.png" alt=""></span>
-                    <span class="brand-title mb-5">
-                        <img src="assets/images/ikm2.png" alt="">
+                    <span class="brand-title mb-10">
+                        <img src="assets/images/bphm.png" alt="">
                     </span>
                 </a>
             </div>
         </div>
+
         <!--**********************************
             Nav header end
         ***********************************-->
@@ -91,6 +107,7 @@ $sub_menu3   = strtolower($this->uri->segment(3));
         <!--**********************************
             Header start
         ***********************************-->
+        
         <div class="header">    
             <div class="header-content clearfix">
                 
