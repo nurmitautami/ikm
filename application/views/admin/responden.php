@@ -11,7 +11,7 @@
                                                 <th>No</th>
                                                 <th>Tgl</th>
                                                 <th>Nama</th>
-                                                <th>NOPOL</th>
+                                                <th>Lembaga/Instansi</th>
                                                 <th>Jenis Kelamin</th>
                                                 <th>Usia</th>
                                                 <th>Pekerjaan</th>
@@ -26,7 +26,7 @@
                                                 <td><?php echo $i; ?>.</td>
                                                 <td><?php echo date('d/m/Y', strtotime($resp['respo_created'])); ?></td>
                                                 <td><?php echo $resp['respo_nama']; ?></td>
-                                                <td><?php echo $resp['respo_nopol']; ?></td>
+                                                <td><?php echo $resp['respo_lembaga']; ?></td>
                                                 <td><?php echo $resp['respo_jk']; ?></td>
                                                 <td><?php echo $resp['respo_usia']; ?> Tahun</td>
                                                 <td><?php echo $resp['respo_pekerjaan']; ?></td>

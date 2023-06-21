@@ -47,8 +47,8 @@ tr:nth-child(even) {background-color: #f2f2f2;}
         <td><?php echo $respoid['respo_nama']; ?></td>
     </tr>
     <tr>
-        <th>NOPOL</th>
-        <td><?php echo $respoid['respo_nopol']; ?></td>
+        <th>Lembaga/Instansi</th>
+        <td><?php echo $respoid['respo_lembaga']; ?></td>
     </tr>
     <tr>
         <th>Jenis Kelamin</th>
@@ -94,7 +94,7 @@ tr:nth-child(even) {background-color: #f2f2f2;}
     </tr>
     <?php $i = 1; ?>
     <?php foreach($ceklisja as $jwb): ?>
-<?php $cekcl1 = $this->db->get_where('tb_hasil',['hasil_user' => $respoid['respo_nopol'], 'hasil_jawaban' => $jwb['jawab_id']])->num_rows();?>
+<?php $cekcl1 = $this->db->get_where('tb_hasil',['hasil_user' => $respoid['respo_lembaga'], 'hasil_jawaban' => $jwb['jawab_id']])->num_rows();?>
         <tr>
             <td><?php echo $i; ?>.</td>
             <td><?php echo $jwb['jawab_jenis']; ?></td>

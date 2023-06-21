@@ -135,7 +135,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>Nama</th>
-                                                    <th>NOPOL</th>
+                                                    <th>Lembaga/instansi</th>
                                                     <th>Usia</th>
                                                     <th>Pendidikan</th>
                                                     <th>Pekerjaan</th>
@@ -145,7 +145,7 @@
                                                 <?php foreach($darespon as $dares): ?>
                                                 <tr>
                                                     <td><?php echo $dares['respo_nama']; ?></td>
-                                                    <td><span><?php echo $dares['respo_nopol']; ?></span>
+                                                    <td><span><?php echo $dares['respo_lembaga']; ?></span>
                                                     </td>
                                                     <td><?php echo $dares['respo_usia']; ?> Th</td>
                                                     <td><?php echo $dares['respo_pendidikan']; ?></td>

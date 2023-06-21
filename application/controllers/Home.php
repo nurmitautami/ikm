@@ -22,7 +22,7 @@ class Home extends CI_Controller {
 	}
 
 	public function ques() {
-		if($this->session->userdata('nopol')) {
+		if($this->session->userdata('lembaga')) {
 			redirect('kuesioner/'.$this->session->userdata('nonex'));
 		}
 		$id = 1;
@@ -31,7 +31,7 @@ class Home extends CI_Controller {
 		);
 		$this->form_validation->set_rules('nama', 'nama', 'required', [
 					'required'	=>	'Kolom ini tidak boleh kosong']);
-		$this->form_validation->set_rules('nopol', 'nopol', 'required', [
+		$this->form_validation->set_rules('lembaga', 'lembaga', 'required', [
 					'required'	=>	'Kolom ini tidak boleh kosong']);
 		$this->form_validation->set_rules('umur', 'umur', 'required', [
 					'required'	=>	'Kolom ini tidak boleh kosong']);
@@ -47,7 +47,7 @@ class Home extends CI_Controller {
 			$this->load->view('home/footer');
 		}else {
 			$this->Home_model->simpan_responden();
-			$this->session->set_userdata('nopol', $this->input->post('nopol'));
+			$this->session->set_userdata('lembaga', $this->input->post('lembaga'));
 			$this->session->set_userdata('nonex', $id);
 			$browser 	=	$this->agent->browser();
 			$b_version 	=	$this->agent->version();
@@ -69,7 +69,7 @@ class Home extends CI_Controller {
 
 	public function question($id) {
 		$cek1 = $this->db->get_where('tb_kuesioner',['kuesioner_next' => $id])->row_array();
-		$cek2 = $this->db->get_where('tb_responden',['respo_nopol' => $this->session->userdata('nopol')])->row_array();
+		$cek2 = $this->db->get_where('tb_responden',['respo_lembaga' => $this->session->userdata('lembaga')])->row_array();
 		if(!$cek1) {
 			$notif = array (
 				'noti_id'			=>	md5(rand()),
@@ -81,7 +81,7 @@ class Home extends CI_Controller {
 			redirect('selesai');
 		}
 		if($id != $this->session->userdata('nonex')) {
-			if($this->session->userdata('nopol')) {
+			if($this->session->userdata('lembaga')) {
 				redirect('kuesioner/'.$this->session->userdata('nonex'));
 			}else {
 				redirect('identitas');
@@ -104,7 +104,7 @@ class Home extends CI_Controller {
 
 	public function simpan_question($kueid,$jwbid) {
 		$cek1 = $this->db->get_where('tb_kuesioner',['kuesioner_id' => $kueid])->row_array();
-		$cek2 = $this->db->get_where('tb_hasil',['hasil_kuesioner' => $kueid, 'hasil_user' => $this->session->userdata('nopol')])->row_array();
+		$cek2 = $this->db->get_where('tb_hasil',['hasil_kuesioner' => $kueid, 'hasil_user' => $this->session->userdata('lembaga')])->row_array();
 		$next = $cek1['kuesioner_next'] + 1;
 		$this->session->set_userdata('nonex', $next);
 		if($cek2) {
@@ -114,7 +114,7 @@ class Home extends CI_Controller {
 		}else {
 			$data = array (
 				'hasil_id'				=>	md5(rand()),
-				'hasil_user'			=>	strtoupper($this->session->userdata('nopol')),
+				'hasil_user'			=>	strtoupper($this->session->userdata('lembaga')),
 				'hasil_indeks'			=>	$cek1['kuesioner_indeksid'],
 				'hasil_kuesioner'		=>	$kueid,
 				'hasil_jawaban'			=>	$jwbid,
@@ -126,7 +126,7 @@ class Home extends CI_Controller {
 	}
 
 	public function done() {
-		if(!$this->session->userdata('nopol')) {
+		if(!$this->session->userdata('lembaga')) {
 			redirect('identitas');
 		}
 		$this->session->sess_destroy();

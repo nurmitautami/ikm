@@ -11,7 +11,7 @@ class Home_model extends CI_Model {
 		$data = array (
 			'respo_id'				=>   md5(rand()),
 			'respo_nama'			=>   ucwords($this->input->post('nama')),
-			'respo_nopol'			=>   strtoupper($this->input->post('nopol')),
+			'respo_lembaga'			=>   strtoupper($this->input->post('lembaga')),
 			'respo_jk'				=>   $this->input->post('jk'),
 			'respo_usia'			=>   $this->input->post('umur'),
 			'respo_pendidikan'		=>   $this->input->post('pendidikan'),

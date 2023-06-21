@@ -2,12 +2,12 @@
         <!-- App features section-->
         <section id="features" class="mt-5">
             <div class="container px-5">
-                <?php if($this->session->userdata('nopol')) { ?>
+                <?php if($this->session->userdata('lembaga')) { ?>
                     <?php $cekindek = $this->db->get_where('tb_indeks',['indeks_id' => $soal['kuesioner_indeksid']])->row_array();
                      ?>
                      <?php $cekjmlindek = $this->db->get_where('tb_kuesioner',['kuesioner_indeksid' => $cekindek['indeks_id']])->num_rows();
                       ?>
-                      <?php $ceksdh = $this->db->get_where('tb_hasil',['hasil_user' => $this->session->userdata('nopol'),'hasil_indeks' => $soal['kuesioner_indeksid']])->num_rows();
+                      <?php $ceksdh = $this->db->get_where('tb_hasil',['hasil_user' => $this->session->userdata('lembaga'),'hasil_indeks' => $soal['kuesioner_indeksid']])->num_rows();
                        ?>
                        <?php $isian = $ceksdh + 1; ?>
                     <h3 class="text-center">Indeks : <span class="text-success"><?php echo $cekindek['indeks_judul']; ?> - (<?php echo $isian; ?>/<?php echo $cekjmlindek; ?>)</span></h3>
@@ -38,14 +38,14 @@
                                     <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                                     <div class="form-group">
                                         <label>Nama Lengkap</label>
-                                        <input type="text" class="form-control" name="nama" value="<?php echo set_value('nama'); ?>" placeholder="Edi Prakoso" autofocus>
+                                        <input type="text" class="form-control" name="nama" value="<?php echo set_value('nama'); ?>" placeholder="" autofocus>
                                         <small class="text-danger"><?php echo form_error('nama'); ?></small>
                                     </div>  
                                     <div class="form-group mt-3">
-                                        <label>Nomor Kendaraan (Nomor Polisi)</label>
-                                        <input type="text" class="form-control" name="nopol" value="<?php echo set_value('nopol'); ?>" placeholder="R4389T">
-                                        <small class="text-danger"><?php echo form_error('nopol'); ?></small>
-                                        <small class="text-muted">Tanpa spasi</small>
+                                        <label>Lembaga/Instansi</label>
+                                        <input type="text" class="form-control" name="lembaga" value="<?php echo set_value('lembaga'); ?>" placeholder="">
+                                        <small class="text-danger"><?php echo form_error('lembaga'); ?></small>
+
                                     </div>
                                     <div class="form-group mt-3">
                                         <label>Jenis Kelamin</label>
