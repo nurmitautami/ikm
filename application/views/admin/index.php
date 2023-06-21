@@ -135,7 +135,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>Nama</th>
-                                                    <th>Lembaga/instansi</th>
+                                                    <th>Lembaga/Instansi</th>
                                                     <th>Usia</th>
                                                     <th>Pendidikan</th>
                                                     <th>Pekerjaan</th>

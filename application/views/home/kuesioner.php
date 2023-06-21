@@ -30,7 +30,7 @@
                         </div>
                     </div>
                 <?php }else { ?>
-                    <h3>Indentitas Diri</h3>
+                    <h3>Identitas Diri</h3>
                     <div class="row gx-5 align-items-center">
                         <div class="col-lg-12 order-lg-1 mb-5 mb-lg-0">
                             <div class="">
