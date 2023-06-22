@@ -175,15 +175,15 @@ class Admin_model extends CI_Model {
 	}
 
 	public function log_bybrowser() {
-		$this->db->select('count(browser_log_info) as job, browser_log_info as peker');
-		$this->db->group_by('browser_log_info');
-		return $this->db->get('tb_log_akses')->result();
+		$this->db->select('count(respo_usia) as job, respo_usia as peker');
+		$this->db->group_by('respo_usia');
+		return $this->db->get('tb_responden')->result();
 	}
 
 	public function log_byos() {
-		$this->db->select('count(os_log_info) as job, os_log_info as peker');
-		$this->db->group_by('os_log_info');
-		return $this->db->get('tb_log_akses')->result();
+		$this->db->select('count(respo_jk) as job, respo_jk as peker');
+		$this->db->group_by('respo_jk');
+		return $this->db->get('tb_responden')->result();
 	}
 
 	public function update_profil() {

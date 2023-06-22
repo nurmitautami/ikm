@@ -110,7 +110,7 @@
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Pengunjung Berdasarkan Browser</h4>
+                                <h4 class="card-title">Pengunjung Berdasarkan Umur</h4>
                                 <div id="morris-browser"></div>
                             </div>
                         </div>
@@ -118,7 +118,7 @@
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Pengujung Berdasarkan Sistem Operasi</h4>
+                                <h4 class="card-title">Pengujung Berdasarkan Jenis Kelamin</h4>
                                 <div id="morris-os"></div>
                             </div>
                         </div>
