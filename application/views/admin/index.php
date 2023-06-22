@@ -70,7 +70,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Grafik Jawaban Kuesioner Harian</h4>
-                                <canvas id="bychart" width="650" height="300"></canvas>
+                                <canvas id="bychart" width="680" height="300"></canvas>
                             </div>
                         </div>
                     </div>
