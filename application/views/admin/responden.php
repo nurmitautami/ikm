@@ -33,6 +33,7 @@
                                                 <td><?php echo $resp['respo_pendidikan']; ?></td>
                                                 <td>
                                                     <a href="admin/responden/lihat/<?php echo $resp['respo_id']; ?>" class="btn mb-1 btn-info"><i class="fa fa-search"></i></a>
+                                                    <a href="admin/responden/hapus/<?php echo $resp['respo_id']; ?>" onclick="return confirm('Yakin data ini akan dihapus?');" class="btn mb-1 btn-danger"><i class="fa fa-trash"></i></a>
                                                 </td>
                                             </tr>
                                             <?php $i++; ?>

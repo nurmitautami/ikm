@@ -326,6 +326,13 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/responden_print', $data);
 	}
 
+	public function responden_del($id) {
+		$this->db->where('respo_id', $id);
+		$this->db->delete('tb_responden');
+		$this->session->set_flashdata('flash', 'Data berhasil dihapus');
+		redirect('admin/responden');
+	}
+
 	public function notifikasi() {
 		$data = array (
 			'title'				=>	'Notifikasi',

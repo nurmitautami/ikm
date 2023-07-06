@@ -257,6 +257,9 @@ $sub_menu3   = strtolower($this->uri->segment(3));
                         <ul aria-expanded="false">
                             <li><a href="admin/laporan/responden">Responden</a></li>
                         </ul>
+                        <ul aria-expanded="false">
+                            <li><a href="admin/laporan/responden">Hasil Survei</a></li>
+                        </ul>
                     </li>
                     <li>
                         <a href="admin/kritik-saran">
