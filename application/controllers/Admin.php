@@ -300,6 +300,19 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/footer');
 	}
 
+	public function lap_hasil_survei() {
+		$data = array (
+			'title'				=>	'Responden',
+			'me'				=>	$this->db->get_where('tb_admin',['admin_id' => $this->session->userdata('id')])->row_array(),
+			'responden'			=>	$this->Admin_model->data_responden(),
+			'notifbelum'		=>	$this->Admin_model->data_notifikasi_utama(),
+			'pesanbelum'		=>	$this->Admin_model->pesan_notifikasi_utama(),
+		);
+		$this->load->view('admin/header', $data);
+		$this->load->view('admin/lap_hasil_survei', $data);
+		$this->load->view('admin/footer');
+	}
+
 	public function respo_show($id) {
 		$data = array (
 			'title'				=>	'Detail Responden',
@@ -316,15 +329,36 @@ class Admin extends CI_Controller {
 	}
 
 	public function respo_print($id) {
-		$data = array (
-			'title'				=>	'Detail Responden',
-			'me'				=>	$this->db->get_where('tb_admin',['admin_id' => $this->session->userdata('id')])->row_array(),
-			'respoid'			=>	$this->db->get_where('tb_responden',['respo_id' => $id])->row_array(),
-			'respokue'			=>	$this->Admin_model->detail_responden($id),
-			'respokuerata'		=>	$this->Admin_model->detail_responden_rata($id),
+		$data = array(
+			'title' => 'Detail Responden',
+			'me' => $this->db->get_where('tb_admin', ['admin_id' => $this->session->userdata('id')])->row_array(),
+			'respoid' => $this->db->get_where('tb_responden', ['respo_id' => $id])->row_array(),
+			'respokue' => $this->Admin_model->detail_responden($id),
+			'respokuerata' => $this->Admin_model->detail_responden_rata($id),
 		);
+	
+		// Calculate total responses and satisfaction level
+		$totalResponses = 0;
+		$satisfactionLevel = array('Sangat  Puas' => 0, 'Puas' => 0, 'Cukup Puas' => 0, 'Tidak Puas' => 0);
+	
+		foreach ($data['respokuerata'] as $item) {
+			if (is_array($item)) {
+				$totalResponses += $item['jumlah'];
+				$satisfactionLevel[$item['jawab_jenis']] = $item['jumlah'];
+			}
+		}
+		
+	
+		$maxSatisfactionLevel = max($satisfactionLevel);
+	
+		// Pass the calculated values to the view
+		$data['totalResponses'] = $totalResponses;
+		$data['satisfactionLevel'] = $satisfactionLevel;
+		$data['maxSatisfactionLevel'] = $maxSatisfactionLevel;
+	
 		$this->load->view('admin/responden_print', $data);
 	}
+	
 
 	public function responden_del($id) {
 		$this->db->where('respo_id', $id);
