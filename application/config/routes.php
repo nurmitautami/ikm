@@ -76,6 +76,7 @@ $route['admin/laporan/responden'] = 'admin/lap_responden';
 $route['admin/laporan/responden/print'] = 'admin/lap_responden_print';
 $route['admin/laporan/responden/excel'] = 'admin/lap_responden_excel';
 $route['admin/responden/hapus/(:any)'] = 'admin/responden_del/$1';
+$route['admin/cetak_laporan'] = 'admin/cetak_laporan';
 
 $route['identitas'] = 'home/ques';
 $route['kuesioner/(:num)'] = 'home/question/$1';

@@ -1,25 +1,46 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title"><?php echo $title; ?></h4>
-                    <?php echo form_open('admin/cetak_laporan', array('method' => 'POST')); ?>
-                    <div class="form-group">
-                            <label for="start_date">Start Date:</label>
-                            <input type="date" class="form-control" name="start_date" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="end_date">End Date:</label>
-                            <input type="date" class="form-control" name="end_date" required>
-                        </div>
+<!DOCTYPE html>
+<html>
+<head>
+    <title><?php echo $title; ?></title>
+    <style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 5px;
+}
 
-                        <button type="submit" class="btn btn-primary">Cetak Laporan</button>
-                    <?php echo form_close(); ?>
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered zero-configuration">
-                            <thead>
-                                <tr>
+th {
+  background-color: #4CAF50;
+  font-weight: bold;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+  border: 1px solid grey;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid black;
+}
+
+.responsive {
+  width: 100%;
+  height: auto;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+</style>
+</head>
+<body onload="printCetak()">
+<h2 style="text-align: center;"><?php echo $title; ?></h2>
+<div style="overflow-x:auto;">
+<table>
+        <thead>
+                                 <tr>
                                     <th>No</th>
                                     <th>Tgl</th>
                                     <th>Nama</th>
@@ -31,11 +52,11 @@
                                     <th>Detail Jawaban</th>
                                     <th>Hasil</th>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                <?php $i = 1; ?>
-                                <?php foreach($responden as $resp): ?>
-                                <tr>
+        </thead>
+        <tbody>
+            <?php $i = 1; ?>
+            <?php foreach($responden as $resp): ?>
+                <tr>
                                     <td><?php echo $i; ?>.</td>
                                     <td><?php echo date('d/m/Y', strtotime($resp['respo_created'])); ?></td>
                                     <td><?php echo $resp['respo_nama']; ?></td>
@@ -99,13 +120,15 @@
                                         ?>
                                     </td>
                                 </tr>
-                                <?php $i++; ?>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <?php $i++; ?>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
     </div>
-</div>
+    <script>
+    function printCetak() {
+      window.print();
+    }
+</script>
+</body>
+</html>

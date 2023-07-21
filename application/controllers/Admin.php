@@ -307,11 +307,27 @@ class Admin extends CI_Controller {
 			'responden'			=>	$this->Admin_model->data_responden(),
 			'notifbelum'		=>	$this->Admin_model->data_notifikasi_utama(),
 			'pesanbelum'		=>	$this->Admin_model->pesan_notifikasi_utama(),
+			
 		);
+		// $this->load->helper('admin/form');
+        // $this->load->library('admin/form_validation');
 		$this->load->view('admin/header', $data);
 		$this->load->view('admin/lap_hasil_survei', $data);
 		$this->load->view('admin/footer');
 	}
+
+	public function cetak_laporan() {
+        $start_date = $this->input->post('start_date');
+        $end_date = $this->input->post('end_date');
+
+        $data['title'] = 'Laporan Hasil Survei dari ' . $start_date . ' hingga ' . $end_date;
+        $data['responden'] = $this->Admin_model->getDataByDateRange($start_date, $end_date);
+
+        // Load view untuk mencetak data
+        $this->load->view('admin/cetak_laporan_view', $data);
+    }
+
+
 
 	public function respo_show($id) {
 		$data = array (

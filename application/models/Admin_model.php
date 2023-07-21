@@ -104,6 +104,15 @@ class Admin_model extends CI_Model {
 		return $this->db->get('tb_responden')->result_array();
 	}
 
+	public function getDataByDateRange($start_date, $end_date) {
+		$this->db->where('respo_created >=', $start_date);
+		$this->db->where('respo_created <=', $end_date);
+		$this->db->where('DATE(respo_created) BETWEEN \''.$start_date.'\' AND \''.$end_date.'\'');
+		$query = $this->db->get('tb_responden'); // Gantilah 'nama_tabel' dengan nama tabel Anda
+		return $query->result_array();
+	}
+	
+
 	public function detail_responden($id) {
 		$cek = $this->db->get_where('tb_responden',['respo_id' => $id])->row_array();
 		$this->db->select('*');
