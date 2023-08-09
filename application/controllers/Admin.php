@@ -461,6 +461,8 @@ class Admin extends CI_Controller {
 		$data = array (
 			'title'				=>	'Atur Profil',
 			'me'				=>	$this->db->get_where('tb_admin',['admin_id' => $this->session->userdata('id')])->row_array(),
+			'notifbelum'		=>	$this->Admin_model->data_notifikasi_utama(),
+			'pesanbelum'		=>	$this->Admin_model->pesan_notifikasi_utama(),
 		);
 		$this->form_validation->set_rules('nama', 'nama', 'required', [
 					'required'	=>	'Kolom ini tidak boleh kosong']);
@@ -482,6 +484,8 @@ class Admin extends CI_Controller {
 		$data = array (
 			'title'				=>	'Atur Password',
 			'me'				=>	$this->db->get_where('tb_admin',['admin_id' => $this->session->userdata('id')])->row_array(),
+			'notifbelum'		=>	$this->Admin_model->data_notifikasi_utama(),
+			'pesanbelum'		=>	$this->Admin_model->pesan_notifikasi_utama(),
 		);
 		$this->form_validation->set_rules('password1', 'password1', 'required', [
 					'required'	=>	'Kolom ini tidak boleh kosong']);

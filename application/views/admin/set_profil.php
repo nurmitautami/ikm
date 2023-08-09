@@ -24,13 +24,6 @@
                                                 <input type="text" class="form-control input-default" name="email" value="<?php echo $me['admin_email']; ?>">
                                                 <small class="text-danger"><?php echo form_error('email'); ?></small>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="form-group col-md-6">
-                                                <label>Profil</label>
-                                                <input type="file" class="form-control input-default" name="gambar">
-                                                <input type="hidden" name="gambar_old" value="<?php echo $me['admin_foto']; ?>">
-                                            </div>
                                             <div class="form-group col-md-6">
                                                 <label>Password</label>
                                                 <input type="password" class="form-control input-default" name="password">
