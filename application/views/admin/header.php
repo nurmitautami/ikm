@@ -11,7 +11,7 @@ $sub_menu3   = strtolower($this->uri->segment(3));
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title><?php echo $title; ?> - Aplikasi Indeks Kepuasan Masyarakat</title>
+    <title><?php echo $title; ?> - Website Survei Kepuasan Masyarakat</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/x-icon" href="assets/images/logo-unila.png" />
     <!-- Custom Stylesheet -->
