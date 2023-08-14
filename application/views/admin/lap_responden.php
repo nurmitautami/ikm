@@ -5,7 +5,6 @@
                             <div class="card-body">
                                 <h4 class="card-title"><?php echo $title; ?></h4>
                                 <a href="admin/laporan/responden/print" target="_blank" class="btn mb-1 btn-primary">Print</a>
-                                <a href="admin/laporan/responden/excel" class="btn mb-1 btn-warning">Excel</a>
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered zero-configuration">
                                         <thead>
