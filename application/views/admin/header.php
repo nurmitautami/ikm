@@ -257,13 +257,13 @@ $sub_menu3   = strtolower($this->uri->segment(3));
                         </a>
                     </li>
                     <li>
-                    <a href="admin/lap_hasil_survei">
-                            <i class="fa fa-file-text-o"></i><span class="nav-text">Hasil Survei</span>
+                    <a href="admin/laporan/responden">
+                            <i class="icon-doc menu-icon"></i><span class="nav-text">Laporan Responden</span>
                         </a>
                     </li>
                     <li>
-                    <a href="admin/laporan/responden">
-                            <i class="icon-doc menu-icon"></i><span class="nav-text">Laporan Responden</span>
+                    <a href="admin/lap_hasil_survei">
+                            <i class="fa fa-file-text-o"></i><span class="nav-text">Hasil Survei</span>
                         </a>
                     </li>
                     <li>
