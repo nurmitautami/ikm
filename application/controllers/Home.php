@@ -73,7 +73,7 @@ class Home extends CI_Controller {
 		if(!$cek1) {
 			$notif = array (
 				'noti_id'			=>	md5(rand()),
-				'noti_nama'			=>	$cek2['respo_nama'],
+				'noti_nama' => $cek2['respo_nama'] ?? 'Default Value',
 				'noti_ket'			=>	'Telah mengisi kuesioner',
 				'noti_status'		=>	0,
 			);

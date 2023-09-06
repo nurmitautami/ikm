@@ -6,8 +6,17 @@
                                 <h4 class="card-title"><?php echo $title; ?></h4>
                                 <a href="admin/jawaban/new" class="btn mb-1 btn-primary">New Data</a>
                                 <?php if($this->session->flashdata('flash')): ?>
-                                    <div class="alert alert-success"><strong><i class="fa fa-check-circle"></i></strong> <?php echo $this->session->flashdata('flash'); ?></div>
+                                    <div id="notification" class="alert alert-success"><strong><i class="fa fa-check-circle"></i></strong> <?php echo $this->session->flashdata('flash'); ?></div>
                                 <?php endif; ?>
+                                <script>
+                                    // Menghilangkan notifikasi setelah beberapa waktu
+                                    setTimeout(function() {
+                                        var notification = document.getElementById('notification');
+                                        if (notification) {
+                                            notification.style.display = 'none';
+                                        }
+                                    }, 5000);
+                                </script>
                                 <?php if($this->session->flashdata('error')): ?>
                                     <div class="alert alert-danger"><strong><i class="fa fa-times-circle"></i></strong> <?php echo $this->session->flashdata('error'); ?></div>
                                 <?php endif; ?>

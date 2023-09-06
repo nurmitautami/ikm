@@ -4,6 +4,18 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title"><?php echo $title; ?></h4>
+                                <?php if($this->session->flashdata('flash')): ?>
+                                    <div id="notification" class="alert alert-success"><strong><i class="fa fa-check-circle"></i></strong> <?php echo $this->session->flashdata('flash'); ?></div>
+                                <?php endif; ?>
+                                <script>
+                                    // Menghilangkan notifikasi setelah beberapa waktu
+                                    setTimeout(function() {
+                                        var notification = document.getElementById('notification');
+                                        if (notification) {
+                                            notification.style.display = 'none';
+                                        }
+                                    }, 5000);
+                                </script>
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered zero-configuration">
                                         <thead>
