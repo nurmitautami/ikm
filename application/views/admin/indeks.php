@@ -5,7 +5,6 @@
                             <div class="card-body">
                                 <h4 class="card-title"><?php echo $title; ?></h4>
                                 <a href="admin/indeks/new" class="btn mb-1 btn-primary">New Data</a>
-                                <a href="admin/indeks/kosongkan" class="btn mb-1 btn-warning" onclick="return confirm('Yakin tabel ini akan dikosongkan?');">Kosongkan Tabel</a>
                                 <?php if($this->session->flashdata('flash')): ?>
                                     <div class="alert alert-success"><strong><i class="fa fa-check-circle"></i></strong> <?php echo $this->session->flashdata('flash'); ?></div>
                                 <?php endif; ?>

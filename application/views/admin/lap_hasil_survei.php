@@ -14,7 +14,7 @@
                             <input type="date" class="form-control" name="end_date" required>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Cetak Laporan</button>
+                        <button type="submit" class="btn btn-primary">Print</button>
                     <?php echo form_close(); ?>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered zero-configuration">
