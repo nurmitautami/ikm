@@ -78,22 +78,18 @@
                 }
 
                 if (!datasets[jawabJenis]) {
-                    datasets[jawabJenis] = Array(labels.length - 1).fill(0);
+                    datasets[jawabJenis] = Array(labels.length).fill(0); // Ubah ke fill(0) agar sesuai
                 }
 
-                datasets[jawabJenis].push(total);
+                datasets[jawabJenis][labels.indexOf(indeksJudul)] = total; // Sesuaikan indeks data dengan label
             });
 
-            var datasetsArr = [];
-
-            for (var key in datasets) {
-                if (datasets.hasOwnProperty(key)) {
-                    datasetsArr.push({
-                        label: key,
-                        data: datasets[key]
-                    });
-                }
-            }
+            var datasetsArr = Object.keys(datasets).map(function(key) {
+                return {
+                    label: key,
+                    data: datasets[key]
+                };
+            });
 
             var ctx = document.getElementById("grafik").getContext("2d");
 

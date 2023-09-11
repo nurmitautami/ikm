@@ -299,8 +299,9 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/responden', $data);
 		$this->load->view('admin/footer');
 	}
-
 	public function lap_hasil_survei() {
+        // Load your model (replace 'Admin_model' with the actual model name)
+        $this->load->model('Admin_model');
 		$data = array (
 			'title'				=>	'Responden',
 			'me'				=>	$this->db->get_where('tb_admin',['admin_id' => $this->session->userdata('id')])->row_array(),
@@ -309,12 +310,27 @@ class Admin extends CI_Controller {
 			'pesanbelum'		=>	$this->Admin_model->pesan_notifikasi_utama(),
 			
 		);
-		// $this->load->helper('admin/form');
-        // $this->load->library('admin/form_validation');
+        $data['grafik_data'] = $this->Admin_model->getGrafikData(); // Get the data from your model method
+        $data['title'] = 'Laporan Hasil Survei'; // Set your desired title
 		$this->load->view('admin/header', $data);
 		$this->load->view('admin/lap_hasil_survei', $data);
 		$this->load->view('admin/footer');
-	}
+    }
+	// public function lap_hasil_survei() {
+	// 	$data = array (
+	// 		'title'				=>	'Responden',
+	// 		'me'				=>	$this->db->get_where('tb_admin',['admin_id' => $this->session->userdata('id')])->row_array(),
+	// 		'responden'			=>	$this->Admin_model->data_responden(),
+	// 		'notifbelum'		=>	$this->Admin_model->data_notifikasi_utama(),
+	// 		'pesanbelum'		=>	$this->Admin_model->pesan_notifikasi_utama(),
+			
+	// 	);
+	// 	// $this->load->helper('admin/form');
+    //     // $this->load->library('admin/form_validation');
+	// 	$this->load->view('admin/header', $data);
+	// 	$this->load->view('admin/lap_hasil_survei', $data);
+	// 	$this->load->view('admin/footer');
+	// }
 
 	public function cetak_laporan() {
         $start_date = $this->input->post('start_date');
