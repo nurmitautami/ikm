@@ -37,92 +37,83 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 </head>
 <body onload="printCetak()">
 <h2 style="text-align: center;"><?php echo $title; ?></h2>
+<h2 style="text-align: center;">Biro Perencanaan dan Hubungan Masyarakat</h2>
+<h2 style="text-align: center;">Universitas Lampung</h2>
+
 <div style="overflow-x:auto;">
 <table>
         <thead>
                                  <tr>
                                     <th>No</th>
-                                    <th>Tgl</th>
-                                    <th>Nama</th>
-                                    <th>Lembaga</th>
-                                    <th>Jenis Kelamin</th>
-                                    <th>Usia</th>
-                                    <th>Pekerjaan</th>
-                                    <th>Pendidikan</th>
-                                    <th>Detail Jawaban</th>
-                                    <th>Hasil</th>
+                                    <th>Indeks Judul</th>
+                                    <th>Sangat Puas</th>
+                                    <th>Puas</th>
+                                    <th>Cukup Puas</th>
+                                    <th>Tidak Puas</th>
                                 </tr>
         </thead>
         <tbody>
-            <?php $i = 1; ?>
-            <?php foreach($responden as $resp): ?>
-                <tr>
-                                    <td><?php echo $i; ?>.</td>
-                                    <td><?php echo date('d/m/Y', strtotime($resp['respo_created'])); ?></td>
-                                    <td><?php echo $resp['respo_nama']; ?></td>
-                                    <td><?php echo $resp['respo_lembaga']; ?></td>
-                                    <td><?php echo $resp['respo_jk']; ?></td>
-                                    <td><?php echo $resp['respo_usia']; ?> Tahun</td>
-                                    <td><?php echo $resp['respo_pekerjaan']; ?></td>
-                                    <td><?php echo $resp['respo_pendidikan']; ?></td>
-                                    <td>
-                                        <div id="detailTable-<?php echo $i; ?>">
-                                            <div class="table-responsive">
-                                                <table class="table table-bordered">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>No</th>
-                                                            <th>Jawaban</th>
-                                                            <th>Jumlah</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <?php 
-                                                            $ceklisja = $this->db->get('tb_jawaban')->result_array();
-                                                            $totalJumlah = 0;
-                                                            foreach($ceklisja as $index => $jwb): 
-                                                                $cekcl1 = $this->db->get_where('tb_hasil', ['hasil_user' => $resp['respo_lembaga'], 'hasil_jawaban' => $jwb['jawab_id']])->num_rows();
-                                                                $totalJumlah += $cekcl1;
-                                                        ?>
-                                                        <tr>
-                                                            <td><?php echo $index + 1; ?></td>
-                                                            <td><?php echo $jwb['jawab_jenis']; ?></td>
-                                                            <td><?php echo $cekcl1; ?></td>
-                                                        </tr>
-                                                        <?php endforeach; ?>
-                                                        <tr>
-                                                            <td colspan="2"><strong>Total:</strong></td>
-                                                            <td><?php echo $totalJumlah; ?></td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <?php
-                                            // Calculate satisfaction level
-                                            $satisfactionLevel = array('Sangat Puas' => 0, 'Puas' => 0, 'Cukup Puas' => 0, 'Tidak Puas' => 0);
-                                            $cekcl1 = $this->db->get_where('tb_hasil', ['hasil_user' => $resp['respo_lembaga'], 'hasil_jawaban' => 1])->num_rows();
-                                            $cekcl2 = $this->db->get_where('tb_hasil', ['hasil_user' => $resp['respo_lembaga'], 'hasil_jawaban' => 2])->num_rows();
-                                            $cekcl3 = $this->db->get_where('tb_hasil', ['hasil_user' => $resp['respo_lembaga'], 'hasil_jawaban' => 3])->num_rows();
-                                            $cekcl4 = $this->db->get_where('tb_hasil', ['hasil_user' => $resp['respo_lembaga'], 'hasil_jawaban' => 4])->num_rows();
+                                <?php if (!empty($grafik_data)): ?>
+                                    <?php $i = 1; ?>
+                                    <?php $dataPerJudul = array(); ?>
+                                    <?php $totalSangatPuas = 0; ?>
+                                    <?php $totalPuas = 0; ?>
+                                    <?php $totalCukupPuas = 0; ?>
+                                    <?php $totalTidakPuas = 0; ?>
 
-                                            $satisfactionLevel['Sangat Puas'] += $cekcl1;
-                                            $satisfactionLevel['Puas'] += $cekcl2;
-                                            $satisfactionLevel['Cukup Puas'] += $cekcl3;
-                                            $satisfactionLevel['Tidak Puas'] += $cekcl4;
-                                            
-                                            // Get the maximum satisfaction level
-                                            $maxSatisfactionLevel = max($satisfactionLevel);
-                                            $overallSatisfaction = array_search($maxSatisfactionLevel, $satisfactionLevel);
-                                            echo $overallSatisfaction;
+                                    <?php foreach ($grafik_data as $data): ?>
+                                        <?php
+                                            $indeksJudul = $data->indeks_judul;
+                                            $jawabJenis = $data->jawab_jenis;
+                                            $total = intval($data->total);
+
+                                            if (!isset($dataPerJudul[$indeksJudul])) {
+                                                $dataPerJudul[$indeksJudul] = array(
+                                                    'indeks_judul' => $indeksJudul,
+                                                    'Sangat Puas' => 0,
+                                                    'Puas' => 0,
+                                                    'Cukup Puas' => 0,
+                                                    'Tidak Puas' => 0,
+                                                );
+                                            }
+
+                                            $dataPerJudul[$indeksJudul][$jawabJenis] = $total;
+
+                                            // Menghitung total kepuasan
+                                            $totalSangatPuas += ($jawabJenis === 'Sangat Puas') ? $total : 0;
+                                            $totalPuas += ($jawabJenis === 'Puas') ? $total : 0;
+                                            $totalCukupPuas += ($jawabJenis === 'Cukup Puas') ? $total : 0;
+                                            $totalTidakPuas += ($jawabJenis === 'Tidak Puas') ? $total : 0;
                                         ?>
-                                    </td>
-                                </tr>
-            <?php $i++; ?>
-            <?php endforeach; ?>
-        </tbody>
+                                    <?php endforeach; ?>
+
+                                    <?php foreach ($dataPerJudul as $indeksJudul => $dataJudul): ?>
+                                        <tr>
+                                            <td><?php echo $i; ?></td>
+                                            <td><?php echo $indeksJudul; ?></td>
+                                            <td><?php echo $dataJudul['Sangat Puas']; ?></td>
+                                            <td><?php echo $dataJudul['Puas']; ?></td>
+                                            <td><?php echo $dataJudul['Cukup Puas']; ?></td>
+                                            <td><?php echo $dataJudul['Tidak Puas']; ?></td>
+                                        </tr>
+                                        <?php $i++; ?>
+                                    <?php endforeach; ?>
+
+                                    <!-- Tambahkan baris total kepuasan -->
+                                    <tr>
+                                        <td colspan="2"><strong>Total Kepuasan</strong></td>
+                                        <td><strong><?php echo $totalSangatPuas; ?></strong></td>
+                                        <td><strong><?php echo $totalPuas; ?></strong></td>
+                                        <td><strong><?php echo $totalCukupPuas; ?></strong></td>
+                                        <td><strong><?php echo $totalTidakPuas; ?></strong></td>
+                                    </tr>
+
+                                <?php else: ?>
+                                    <tr>
+                                        <td colspan="6">No data available.</td>
+                                    </tr>
+                                <?php endif; ?>
+                            </tbody>
     </table>
     </div>
     <script>
@@ -130,5 +121,19 @@ tr:nth-child(even) {background-color: #f2f2f2;}
       window.print();
     }
 </script>
+<!-- Sign -->
+<div style="margin-top: 10px;">
+    <table style="width: 100%;border: none;">
+        <tr style="border: none;">
+            <td style="width: 70%; text-align: center; border: none;"></td>
+            <td style="width: 30%; text-align: center; border: none;">
+                <p style="margin-bottom: 10px;">Bandar Lampung, <?php echo date('d F Y'); ?></p>
+                <p style="margin-bottom: 100px;">Penanggung Jawab       </p>
+                <p style="margin-bottom: 10px;">(........................................)</p>
+                <p style="margin-bottom: 10px;">NIK. </p>
+            </td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>

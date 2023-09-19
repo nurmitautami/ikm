@@ -302,20 +302,44 @@ class Admin extends CI_Controller {
 	public function lap_hasil_survei() {
         // Load your model (replace 'Admin_model' with the actual model name)
         $this->load->model('Admin_model');
-		$data = array (
-			'title'				=>	'Responden',
-			'me'				=>	$this->db->get_where('tb_admin',['admin_id' => $this->session->userdata('id')])->row_array(),
-			'responden'			=>	$this->Admin_model->data_responden(),
-			'notifbelum'		=>	$this->Admin_model->data_notifikasi_utama(),
-			'pesanbelum'		=>	$this->Admin_model->pesan_notifikasi_utama(),
-			
-		);
-        $data['grafik_data'] = $this->Admin_model->getGrafikData(); // Get the data from your model method
-        $data['title'] = 'Laporan Hasil Survei'; // Set your desired title
-		$this->load->view('admin/header', $data);
-		$this->load->view('admin/lap_hasil_survei', $data);
-		$this->load->view('admin/footer');
+		if($this->input->get('filter')=='filter'){
+			$start_date = $this->input->get('start_date');
+			$end_date = $this->input->get('end_date');
+			$data = array (
+				'title'				=>	'Responden',
+				'me'				=>	$this->db->get_where('tb_admin',['admin_id' => $this->session->userdata('id')])->row_array(),
+				'responden'			=>	$this->Admin_model->getDataByDateRange($start_date, $end_date),
+				'notifbelum'		=>	$this->Admin_model->data_notifikasi_utama(),
+				'pesanbelum'		=>	$this->Admin_model->pesan_notifikasi_utama(),
+			);
+			$data['grafik_data'] = $this->Admin_model->getGrafikDataByDate($start_date, $end_date); // Get the data from your model method
+			$data['title'] = 'Laporan Hasil Survei dari ' . $start_date . ' hingga ' . $end_date; // Set your desired title
+			$this->load->view('admin/header', $data);
+			$this->load->view('admin/lap_hasil_survei', $data);
+			$this->load->view('admin/footer');
+		}
+		else{
+			$data = array (
+				'title'				=>	'Responden',
+				'me'				=>	$this->db->get_where('tb_admin',['admin_id' => $this->session->userdata('id')])->row_array(),
+				'responden'			=>	$this->Admin_model->data_responden(),
+				'notifbelum'		=>	$this->Admin_model->data_notifikasi_utama(),
+				'pesanbelum'		=>	$this->Admin_model->pesan_notifikasi_utama(),
+				
+			);
+			$data['grafik_data'] = $this->Admin_model->getGrafikData(); // Get the data from your model method
+			$data['title'] = 'Laporan Hasil Survei'; // Set your desired title
+			$this->load->view('admin/header', $data);
+			$this->load->view('admin/lap_hasil_survei', $data);
+			$this->load->view('admin/footer');
+		}
+
     }
+	public function lap_hasil_survei_date($start_date,$end_date,$filter) {
+		$url = '/admin/lap_hasil_survei?start_date=' . urlencode($start_date) . '&end_date=' . urlencode($end_date) . '&filter=' . urlencode($filter);
+		redirect($url);
+	}
+
 	// public function lap_hasil_survei() {
 	// 	$data = array (
 	// 		'title'				=>	'Responden',
@@ -333,14 +357,27 @@ class Admin extends CI_Controller {
 	// }
 
 	public function cetak_laporan() {
-        $start_date = $this->input->post('start_date');
-        $end_date = $this->input->post('end_date');
-
-        $data['title'] = 'Laporan Hasil Survei dari ' . $start_date . ' hingga ' . $end_date;
-        $data['responden'] = $this->Admin_model->getDataByDateRange($start_date, $end_date);
-
-        // Load view untuk mencetak data
-        $this->load->view('admin/cetak_laporan_view', $data);
+		$start_date = $this->input->post('start_date');
+		$end_date = $this->input->post('end_date');
+		if( $this->input->post('action')=='filter'){
+			// lap_hasil_survei_date();
+			$filter = $this->input->post('action');
+			$this->lap_hasil_survei_date($start_date,$end_date,$filter);
+		}
+		else{
+			$data = array (
+				'title'				=>	'Responden',
+				'me'				=>	$this->db->get_where('tb_admin',['admin_id' => $this->session->userdata('id')])->row_array(),
+				'responden'			=>	$this->Admin_model->getDataByDateRange($start_date, $end_date),
+				'notifbelum'		=>	$this->Admin_model->data_notifikasi_utama(),
+				'pesanbelum'		=>	$this->Admin_model->pesan_notifikasi_utama(),
+			);
+			$data['title'] = 'Laporan Hasil Survei dari ' . $start_date . ' hingga ' . $end_date;
+			$data['grafik_data'] = $this->Admin_model->getGrafikDataByDate($start_date, $end_date);
+	
+			// Load view untuk mencetak data
+			$this->load->view('admin/cetak_laporan_view', $data);
+		}
     }
 
 

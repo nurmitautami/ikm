@@ -4,7 +4,6 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title"><?php echo $title; ?></h4>
-                                <a href="admin/jawaban/new" class="btn mb-1 btn-primary">New Data</a>
                                 <?php if($this->session->flashdata('flash')): ?>
                                     <div id="notification" class="alert alert-success"><strong><i class="fa fa-check-circle"></i></strong> <?php echo $this->session->flashdata('flash'); ?></div>
                                 <?php endif; ?>

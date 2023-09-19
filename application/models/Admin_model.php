@@ -12,6 +12,18 @@ class Admin_model extends CI_Model {
         return $query->result();
     }
 
+	public function getGrafikDataByDate($date_start, $date_end) {
+		$this->db->select('i.indeks_judul, j.jawab_jenis, COUNT(h.hasil_id) AS total');
+		$this->db->from('tb_indeks i');
+		$this->db->join('tb_hasil h', 'h.hasil_indeks = i.indeks_id', 'left');
+		$this->db->join('tb_jawaban j', 'j.jawab_id = h.hasil_jawaban', 'left');
+		$this->db->where('DATE(h.hasil_tgl) BETWEEN \''.$date_start.'\' AND \''.$date_end.'\'');
+		$this->db->group_by(array('i.indeks_id', 'j.jawab_id'));
+		$query = $this->db->get();
+		return $query->result();
+		
+	}
+
     public function getJawabanData() {
 	    $this->db->select('j.jawab_jenis, COUNT(h.hasil_id) AS total');
 	    $this->db->from('tb_jawaban j');

@@ -13,7 +13,6 @@
                                             <small class="text-danger"><?php echo form_error('judul'); ?></small>
                                         </div>
                                         <div class="form-group">
-                                            <button type="button" onclick="goBack();" class="btn mb-1 btn-warning">Batal</button>
                                             <button type="submit" class="btn mb-1 btn-success">Simpan</button>
                                         </div>
                                     </form>

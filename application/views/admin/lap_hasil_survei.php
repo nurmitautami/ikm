@@ -6,16 +6,16 @@
                 <div class="card-body">
                     <h4 class="card-title"><?php echo $title; ?></h4>
                     <?php echo form_open('admin/cetak_laporan', array('method' => 'POST')); ?>
-                    <div class="form-group">
-                        <label for="start_date">Start Date:</label>
-                        <input type="date" class="form-control" name="start_date" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="end_date">End Date:</label>
-                        <input type="date" class="form-control" name="end_date" required>
-                    </div>
+                        <div class="form-group">
+                            <label for="start_date">Start Date:</label>
+                            <input type="date" class="form-control" name="start_date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="end_date">End Date:</label>
+                            <input type="date" class="form-control" name="end_date" required>
+                        </div>
 
-                    <button type="submit" class="btn btn-primary">Print</button>
+                        <button type="submit" class="btn btn-primary" name="action" value="print">Print</button>
                     <?php echo form_close(); ?>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered zero-configuration">

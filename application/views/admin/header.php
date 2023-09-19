@@ -123,17 +123,8 @@ $sub_menu3   = strtolower($this->uri->segment(3));
                         <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
                             <?php $cekmsg = $this->db->get_where('tb_krisar',['krisar_status' => 0])->num_rows();
                              ?>
-                                <i class="mdi mdi-email-outline"></i>
-                                <?php if($cekmsg == 0) { ?>
-                                <?php }else { ?>
-                                    <span class="badge gradient-1 badge-pill badge-primary"><?php echo $cekmsg; ?></span>
-                                <?php } ?>
-                            </a>
                             <div class="drop-down  dropdown-menu">
                                 <div class="dropdown-content-heading d-flex justify-content-between">
-                                    <span class=""><?php echo $cekmsg; ?> New Messages</span>  
-                                    <a href="admin/kritik-saran">Lihat Semua</a>  
-                                    
                                 </div>
                                 <div class="dropdown-content-body">
                                     <ul>
