@@ -46,8 +46,8 @@
             <td><?php echo $respoid['respo_nama']; ?></td>
         </tr>
         <tr>
-            <th>Lembaga/Instansi</th>
-            <td><?php echo $respoid['respo_lembaga']; ?></td>
+            <th>Nomor Telephone</th>
+            <td><?php echo $respoid['respo_notelp']; ?></td>
         </tr>
         <tr>
             <th>Jenis Kelamin</th>
@@ -96,7 +96,7 @@
         <?php $i = 1; ?>
         <?php $totalResponses = 0; ?>
         <?php foreach($ceklisja as $jwb): ?>
-            <?php $cekcl1 = $this->db->get_where('tb_hasil',['hasil_user' => $respoid['respo_lembaga'], 'hasil_jawaban' => $jwb['jawab_id']])->num_rows();?>
+            <?php $cekcl1 = $this->db->get_where('tb_hasil',['hasil_user' => $respoid['respo_notelp'], 'hasil_jawaban' => $jwb['jawab_id']])->num_rows();?>
             <?php $totalResponses += $cekcl1; ?>
             <tr>
                 <td><?php echo $i; ?>.</td>
@@ -114,7 +114,7 @@
             <?php
                 $satisfactionLevel = array();
                 foreach($ceklisja as $jwb) {
-                    $cekcl = $this->db->get_where('tb_hasil',['hasil_user' => $respoid['respo_lembaga'], 'hasil_jawaban' => $jwb['jawab_id']])->num_rows();
+                    $cekcl = $this->db->get_where('tb_hasil',['hasil_user' => $respoid['respo_notelp'], 'hasil_jawaban' => $jwb['jawab_id']])->num_rows();
                     $satisfactionLevel[$jwb['jawab_jenis']] = $cekcl;
                 }
                 $maxSatisfactionLevel = max($satisfactionLevel);

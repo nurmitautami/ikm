@@ -20,9 +20,30 @@ class Home extends CI_Controller {
 		$this->load->view('home/index', $data);
 		$this->load->view('home/footer');
 	}
+	public function hasil()
+{
+    // Ambil nilai tahun dari parameter URL jika ada, atau gunakan tahun default (2023)
+    $tahun = $this->input->get('tahun') ;
+
+    $data = array(
+        'title'       => 'Hasil',
+        'grafik_data' => $this->Home_model->getGrafikData($tahun), // Kirim tahun ke model
+        'tahun'       => $tahun, // Kirim tahun ke view
+		'tahun_list'     => $this->Home_model->getTahunList(), // Mengambil daftar tahun
+    );
+
+	if ($tahun === null) {
+		$data['tahun'] = 'Semua Tahun';
+	}
+
+    $this->load->view('home/header', $data);
+    $this->load->view('home/hasil'); // Menggunakan view hasil.php
+    $this->load->view('home/footer');
+}
+
 
 	public function ques() {
-		if($this->session->userdata('lembaga')) {
+		if($this->session->userdata('notelp')) {
 			redirect('kuesioner/'.$this->session->userdata('nonex'));
 		}
 		$id = 1;
@@ -31,7 +52,7 @@ class Home extends CI_Controller {
 		);
 		$this->form_validation->set_rules('nama', 'nama', 'required', [
 					'required'	=>	'Kolom ini tidak boleh kosong']);
-		$this->form_validation->set_rules('lembaga', 'lembaga', 'required', [
+		$this->form_validation->set_rules('notelp', 'notelp', 'required', [
 					'required'	=>	'Kolom ini tidak boleh kosong']);
 		$this->form_validation->set_rules('umur', 'umur', 'required', [
 					'required'	=>	'Kolom ini tidak boleh kosong']);
@@ -47,7 +68,7 @@ class Home extends CI_Controller {
 			$this->load->view('home/footer');
 		}else {
 			$this->Home_model->simpan_responden();
-			$this->session->set_userdata('lembaga', $this->input->post('lembaga'));
+			$this->session->set_userdata('notelp', $this->input->post('notelp'));
 			$this->session->set_userdata('nonex', $id);
 			$browser 	=	$this->agent->browser();
 			$b_version 	=	$this->agent->version();
@@ -69,7 +90,7 @@ class Home extends CI_Controller {
 
 	public function question($id) {
 		$cek1 = $this->db->get_where('tb_kuesioner',['kuesioner_next' => $id])->row_array();
-		$cek2 = $this->db->get_where('tb_responden',['respo_lembaga' => $this->session->userdata('lembaga')])->row_array();
+		$cek2 = $this->db->get_where('tb_responden',['respo_notelp' => $this->session->userdata('notelp')])->row_array();
 		if(!$cek1) {
 			$notif = array (
 				'noti_id'			=>	md5(rand()),
@@ -81,7 +102,7 @@ class Home extends CI_Controller {
 			redirect('selesai');
 		}
 		if($id != $this->session->userdata('nonex')) {
-			if($this->session->userdata('lembaga')) {
+			if($this->session->userdata('notelp')) {
 				redirect('kuesioner/'.$this->session->userdata('nonex'));
 			}else {
 				redirect('identitas');
@@ -94,6 +115,7 @@ class Home extends CI_Controller {
 		);
 		$this->load->view('home/header', $data);
 		$this->load->view('home/kuesioner', $data);
+		$this->load->view('home/selesai', $data);
 		$this->load->view('home/footer');
 	}
 
@@ -104,7 +126,7 @@ class Home extends CI_Controller {
 
 	public function simpan_question($kueid,$jwbid) {
 		$cek1 = $this->db->get_where('tb_kuesioner',['kuesioner_id' => $kueid])->row_array();
-		$cek2 = $this->db->get_where('tb_hasil',['hasil_kuesioner' => $kueid, 'hasil_user' => $this->session->userdata('lembaga')])->row_array();
+		$cek2 = $this->db->get_where('tb_hasil',['hasil_kuesioner' => $kueid, 'hasil_user' => $this->session->userdata('notelp')])->row_array();
 		$next = $cek1['kuesioner_next'] + 1;
 		$this->session->set_userdata('nonex', $next);
 		if($cek2) {
@@ -114,7 +136,7 @@ class Home extends CI_Controller {
 		}else {
 			$data = array (
 				'hasil_id'				=>	md5(rand()),
-				'hasil_user'			=>	strtoupper($this->session->userdata('lembaga')),
+				'hasil_user'			=>	strtoupper($this->session->userdata('notelp')),
 				'hasil_indeks'			=>	$cek1['kuesioner_indeksid'],
 				'hasil_kuesioner'		=>	$kueid,
 				'hasil_jawaban'			=>	$jwbid,
@@ -126,7 +148,7 @@ class Home extends CI_Controller {
 	}
 
 	public function done() {
-		if(!$this->session->userdata('lembaga')) {
+		if(!$this->session->userdata('notelp')) {
 			redirect('identitas');
 		}
 		$this->session->sess_destroy();
