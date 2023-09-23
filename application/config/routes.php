@@ -79,6 +79,7 @@ $route['admin/responden/hapus/(:any)'] = 'admin/responden_del/$1';
 $route['admin/cetak_laporan'] = 'admin/cetak_laporan';
 
 $route['identitas'] = 'home/ques';
+$route['hasil'] = 'home/hasil';
 $route['kuesioner/(:num)'] = 'home/question/$1';
 $route['next/(:any)/(:num)'] = 'home/simpan_question/$1/$2';
 $route['selesai'] = 'home/done';

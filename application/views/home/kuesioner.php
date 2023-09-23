@@ -2,12 +2,12 @@
         <!-- App features section-->
         <section id="features" class="mt-5">
             <div class="container px-5">
-                <?php if($this->session->userdata('lembaga')) { ?>
+                <?php if($this->session->userdata('notelp')) { ?>
                     <?php $cekindek = $this->db->get_where('tb_indeks',['indeks_id' => $soal['kuesioner_indeksid']])->row_array();
                      ?>
                      <?php $cekjmlindek = $this->db->get_where('tb_kuesioner',['kuesioner_indeksid' => $cekindek['indeks_id']])->num_rows();
                       ?>
-                      <?php $ceksdh = $this->db->get_where('tb_hasil',['hasil_user' => $this->session->userdata('lembaga'),'hasil_indeks' => $soal['kuesioner_indeksid']])->num_rows();
+                      <?php $ceksdh = $this->db->get_where('tb_hasil',['hasil_user' => $this->session->userdata('notelp'),'hasil_indeks' => $soal['kuesioner_indeksid']])->num_rows();
                        ?>
                        <?php $isian = $ceksdh + 1; ?>
                     <h3 class="text-center">Indeks : <span class="text-success"><?php echo $cekindek['indeks_judul']; ?> - (<?php echo $isian; ?>/<?php echo $cekjmlindek; ?>)</span></h3>
@@ -42,9 +42,9 @@
                                         <small class="text-danger"><?php echo form_error('nama'); ?></small>
                                     </div>  
                                     <div class="form-group mt-3">
-                                        <label>Lembaga/Instansi</label>
-                                        <input type="text" class="form-control" name="lembaga" value="<?php echo set_value('lembaga'); ?>" placeholder="">
-                                        <small class="text-danger"><?php echo form_error('lembaga'); ?></small>
+                                        <label>Nomor Telpon</label>
+                                        <input type="text" class="form-control" name="notelp" value="<?php echo set_value('notelp'); ?>" placeholder="">
+                                        <small class="text-danger"><?php echo form_error('notelp'); ?></small>
 
                                     </div>
                                     <div class="form-group mt-3">
@@ -72,6 +72,7 @@
                                             <option value="S1" <?php echo set_select('pendidikan','S1'); ?>>S1</option>
                                             <option value="S2" <?php echo set_select('pendidikan','S2'); ?>>S2</option>
                                             <option value="S3" <?php echo set_select('pendidikan','S3'); ?>>S3</option>
+                                            <option value="Lainnya" <?php echo set_select('pendidikan','Lainnya'); ?>>Lainnya</option>
                                         </select>
                                         <small class="text-danger"><?php echo form_error('pendidikan'); ?></small>
                                     </div>

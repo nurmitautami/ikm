@@ -131,7 +131,7 @@ class Admin_model extends CI_Model {
 		$this->db->from('tb_kuesioner');
 		$this->db->join('tb_hasil', 'tb_hasil.hasil_kuesioner = tb_kuesioner.kuesioner_id');
 		$this->db->join('tb_jawaban', 'tb_jawaban.jawab_id = tb_hasil.hasil_jawaban');
-		$this->db->where('hasil_user', $cek['respo_lembaga']);
+		$this->db->where('hasil_user', $cek['respo_notelp']);
 		$this->db->order_by('kuesioner_next', 'ASC');
 		return $this->db->get()->result_array();
 	}
@@ -142,7 +142,7 @@ class Admin_model extends CI_Model {
 		$this->db->from('tb_kuesioner');
 		$this->db->join('tb_hasil', 'tb_hasil.hasil_kuesioner = tb_kuesioner.kuesioner_id');
 		$this->db->join('tb_jawaban', 'tb_jawaban.jawab_id = tb_hasil.hasil_jawaban');
-		$this->db->where('hasil_user', $cek['respo_lembaga']);
+		$this->db->where('hasil_user', $cek['respo_notelp']);
 		$this->db->order_by('hasil_jawaban', 'ASC');
 		return $this->db->get()->row_array();
 	}

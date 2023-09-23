@@ -12,8 +12,8 @@
                                             <td><?php echo $respoid['respo_nama']; ?></td>
                                         </tr>
                                         <tr>
-                                            <th>Lembaga/Instansi</th>
-                                            <td><?php echo $respoid['respo_lembaga']; ?></td>
+                                            <th>Nomor Telepon</th>
+                                            <td><?php echo $respoid['respo_notelp']; ?></td>
                                         </tr>
                                         <tr>
                                             <th>Jenis Kelamin</th>
@@ -56,10 +56,10 @@
                                         </tbody>
                                         <!-- <tr>
                                             <th colspan="2">Rata-rata</th>
-                                            <?php $cekcl1 = $this->db->get_where('tb_hasil',['hasil_user' => $respoid['respo_lembaga'], 'hasil_jawaban' => 1])->num_rows();?>
-                                            <?php $cekcl2 = $this->db->get_where('tb_hasil',['hasil_user' => $respoid['respo_lembaga'], 'hasil_jawaban' => 2])->num_rows();?>
-                                            <?php $cekcl3 = $this->db->get_where('tb_hasil',['hasil_user' => $respoid['respo_lembaga'], 'hasil_jawaban' => 3])->num_rows();?>
-                                            <?php $cekcl4 = $this->db->get_where('tb_hasil',['hasil_user' => $respoid['respo_lembaga'], 'hasil_jawaban' => 4])->num_rows();?>
+                                            <?php $cekcl1 = $this->db->get_where('tb_hasil',['hasil_user' => $respoid['respo_notelp'], 'hasil_jawaban' => 1])->num_rows();?>
+                                            <?php $cekcl2 = $this->db->get_where('tb_hasil',['hasil_user' => $respoid['respo_notelp'], 'hasil_jawaban' => 2])->num_rows();?>
+                                            <?php $cekcl3 = $this->db->get_where('tb_hasil',['hasil_user' => $respoid['respo_notelp'], 'hasil_jawaban' => 3])->num_rows();?>
+                                            <?php $cekcl4 = $this->db->get_where('tb_hasil',['hasil_user' => $respoid['respo_notelp'], 'hasil_jawaban' => 4])->num_rows();?>
                                             <?php $nilai = array($cekcl1,$cekcl2,$cekcl3,$cekcl4); ?>
                                             <th><?php echo max($nilai); ?></th>
                                         </tr> -->
@@ -68,10 +68,10 @@
                    <!-- ... (existing code) ... -->
 <!-- Calculate total and satisfaction level -->
 <?php
-    $cekcl1 = $this->db->get_where('tb_hasil',['hasil_user' => $respoid['respo_lembaga'], 'hasil_jawaban' => 1])->num_rows();
-    $cekcl2 = $this->db->get_where('tb_hasil',['hasil_user' => $respoid['respo_lembaga'], 'hasil_jawaban' => 2])->num_rows();
-    $cekcl3 = $this->db->get_where('tb_hasil',['hasil_user' => $respoid['respo_lembaga'], 'hasil_jawaban' => 3])->num_rows();
-    $cekcl4 = $this->db->get_where('tb_hasil',['hasil_user' => $respoid['respo_lembaga'], 'hasil_jawaban' => 4])->num_rows();
+    $cekcl1 = $this->db->get_where('tb_hasil',['hasil_user' => $respoid['respo_notelp'], 'hasil_jawaban' => 1])->num_rows();
+    $cekcl2 = $this->db->get_where('tb_hasil',['hasil_user' => $respoid['respo_notelp'], 'hasil_jawaban' => 2])->num_rows();
+    $cekcl3 = $this->db->get_where('tb_hasil',['hasil_user' => $respoid['respo_notelp'], 'hasil_jawaban' => 3])->num_rows();
+    $cekcl4 = $this->db->get_where('tb_hasil',['hasil_user' => $respoid['respo_notelp'], 'hasil_jawaban' => 4])->num_rows();
     $totalResponses = $cekcl1 + $cekcl2 + $cekcl3 + $cekcl4;
     $satisfactionLevel = array('Sangat  Puas' => $cekcl1, 'Puas' => $cekcl2, 'Cukup Puas' => $cekcl3, 'Tidak Puas' => $cekcl4);
     $maxSatisfactionLevel = max($satisfactionLevel);
