@@ -5,8 +5,8 @@
                             <div class="card-body">
                                 <h4 class="card-title"><?php echo $title; ?></h4>
                                 <?php if($this->session->flashdata('flash')): ?>
-                                    <div id="notification" class="alert alert-success"><strong><i class="fa fa-check-circle"></i></strong> <?php echo $this->session->flashdata('flash'); ?></div>
-                                <?php endif; ?>
+                                <div id="notification" class="alert alert-success"><strong><i class="fa fa-check-circle"></i></strong> <?php echo $this->session->flashdata('flash'); ?></div>
+                                <?php $this->session->set_flashdata('flash', null); // Menghapus flash data ?>
                                 <script>
                                     // Menghilangkan notifikasi setelah beberapa waktu
                                     setTimeout(function() {
@@ -16,6 +16,7 @@
                                         }
                                     }, 5000);
                                 </script>
+                             <?php endif; ?>
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered zero-configuration">
                                         <thead>
