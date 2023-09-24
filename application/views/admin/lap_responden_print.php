@@ -50,6 +50,7 @@ tr:nth-child(even) {background-color: #f2f2f2;}
       <th>Usia</th>
       <th>Pekerjaan</th>
       <th>Pendidikan</th>
+      <th>Lembaga</th>
     </tr>
     <?php $i = 1; ?>
     <?php foreach($responden as $resp): ?>
@@ -62,6 +63,7 @@ tr:nth-child(even) {background-color: #f2f2f2;}
         <td><?php echo $resp['respo_usia']; ?> Tahun</td>
         <td><?php echo $resp['respo_pekerjaan']; ?></td>
         <td><?php echo $resp['respo_pendidikan']; ?></td>
+        <td><?php echo $resp['respo_lembaga']; ?></td>
     </tr>
     <?php $i++; ?>
     <?php endforeach; ?>

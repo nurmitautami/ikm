@@ -69,6 +69,7 @@ class Home_model extends CI_Model {
 			'respo_usia'			=>   $this->input->post('umur'),
 			'respo_pendidikan'		=>   $this->input->post('pendidikan'),
 			'respo_pekerjaan'		=>   $this->input->post('pekerjaan'),
+			'respo_lembaga'			=>   $this->input->post('lembaga'),
 		);
 	
 		if($this->db->insert('tb_responden', $data)) {

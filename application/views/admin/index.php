@@ -139,6 +139,7 @@
                                                     <th>Usia</th>
                                                     <th>Pendidikan</th>
                                                     <th>Pekerjaan</th>
+                                                    <th>Lembaga</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -150,6 +151,8 @@
                                                     <td><?php echo $dares['respo_usia']; ?> Th</td>
                                                     <td><?php echo $dares['respo_pendidikan']; ?></td>
                                                     <td><span><?php echo $dares['respo_pekerjaan']; ?></span>
+                                                    </td>
+                                                    <td><span><?php echo $dares['respo_lembaga']; ?></span>
                                                     </td>
                                                 </tr>
                                                 <?php endforeach; ?>

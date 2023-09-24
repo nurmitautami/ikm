@@ -93,6 +93,11 @@
                                         <small class="text-danger"><?php echo form_error('pekerjaan'); ?></small>
                                     </div>
                                     <div class="form-group mt-3">
+                                        <label>Lembaga</label>
+                                        <input type="text" class="form-control" name="lembaga" value="<?php echo set_value('lembaga'); ?>">
+                                        <small class="text-danger"><?php echo form_error('lembaga'); ?></small>
+                                    </div>
+                                    <div class="form-group mt-3">
                                         <button type="submit" class="btn btn-primary">Lanjut <i class="bi bi-arrow-right me-2"></i></button>
                                     </div>
                                 </form>

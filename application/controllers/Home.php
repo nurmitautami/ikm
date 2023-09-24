@@ -62,6 +62,8 @@ class Home extends CI_Controller {
 					'required'	=>	'Kolom ini tidak boleh kosong']);
 		$this->form_validation->set_rules('pekerjaan', 'pekerjaan', 'required', [
 					'required'	=>	'Kolom ini tidak boleh kosong']);
+		$this->form_validation->set_rules('lembaga', 'lembaga', 'required', [
+					'required'	=>	'Kolom ini tidak boleh kosong']);
 		if($this->form_validation->run() == FALSE) {
 			$this->load->view('home/header', $data);
 			$this->load->view('home/kuesioner', $data);

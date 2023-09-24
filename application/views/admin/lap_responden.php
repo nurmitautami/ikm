@@ -17,6 +17,7 @@
                                                 <th>Usia</th>
                                                 <th>Pekerjaan</th>
                                                 <th>Pendidikan</th>
+                                                <th>Lembaga</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -31,6 +32,7 @@
                                                 <td><?php echo $resp['respo_usia']; ?> Tahun</td>
                                                 <td><?php echo $resp['respo_pekerjaan']; ?></td>
                                                 <td><?php echo $resp['respo_pendidikan']; ?></td>
+                                                <td><?php echo $resp['respo_lembaga']; ?></td>
                                             </tr>
                                             <?php $i++; ?>
                                         <?php endforeach; ?>

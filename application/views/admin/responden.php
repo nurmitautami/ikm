@@ -28,6 +28,7 @@
                                                 <th>Usia</th>
                                                 <th>Pekerjaan</th>
                                                 <th>Pendidikan</th>
+                                                <th>Lembaga</th>
                                                 <th>Opsi</th>
                                             </tr>
                                         </thead>
@@ -43,6 +44,7 @@
                                                 <td><?php echo $resp['respo_usia']; ?> Tahun</td>
                                                 <td><?php echo $resp['respo_pekerjaan']; ?></td>
                                                 <td><?php echo $resp['respo_pendidikan']; ?></td>
+                                                <td><?php echo $resp['respo_lembaga']; ?></td>
                                                 <td>
                                                     <a href="admin/responden/lihat/<?php echo $resp['respo_id']; ?>" class="btn mb-1 btn-info"><i class="fa fa-search"></i></a>
                                                     <a href="admin/responden/hapus/<?php echo $resp['respo_id']; ?>" onclick="return confirm('Yakin data ini akan dihapus?');" class="btn mb-1 btn-danger"><i class="fa fa-trash"></i></a>

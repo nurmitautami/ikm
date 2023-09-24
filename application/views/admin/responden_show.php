@@ -31,6 +31,10 @@
                                             <th>Pekerjaan</th>
                                             <td><?php echo $respoid['respo_pekerjaan']; ?></td>
                                         </tr>
+                                        <tr>
+                                            <th>Lembaga</th>
+                                            <td><?php echo $respoid['respo_lembaga']; ?></td>
+                                        </tr>
                                     </table>
                                 </div>
                                 <h4 class="card-title">Detail Kuesioner</h4>
