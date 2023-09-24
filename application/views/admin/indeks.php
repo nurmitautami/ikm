@@ -6,8 +6,18 @@
                                 <h4 class="card-title"><?php echo $title; ?></h4>
                                 <a href="admin/indeks/new" class="btn mb-1 btn-primary">New Data</a>
                                 <?php if($this->session->flashdata('flash')): ?>
-                                    <div class="alert alert-success"><strong><i class="fa fa-check-circle"></i></strong> <?php echo $this->session->flashdata('flash'); ?></div>
-                                <?php endif; ?>
+                                <div id="notification" class="alert alert-success"><strong><i class="fa fa-check-circle"></i></strong> <?php echo $this->session->flashdata('flash'); ?></div>
+                                <?php $this->session->set_flashdata('flash', null); // Menghapus flash data ?>
+                                <script>
+                                    // Menghilangkan notifikasi setelah beberapa waktu
+                                    setTimeout(function() {
+                                        var notification = document.getElementById('notification');
+                                        if (notification) {
+                                            notification.style.display = 'none';
+                                        }
+                                    }, 5000);
+                                </script>
+                             <?php endif; ?>
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered zero-configuration">
                                         <thead>
