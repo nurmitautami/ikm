@@ -9,13 +9,13 @@
                                 <div class="card-content">
                                     <?php foreach($notifikasi as $not): ?>
                                         <?php if($not['noti_status'] == 0) { ?>
-                                            <a href="admin/notifikasi/baca/<?php echo $not['noti_id']; ?>"><div class="alert alert-warning alert-dismissible fade show">
-                                        <button class="close"><span aria-hidden="true">&times;</span>
-                                        </button> <strong><?php echo $not['noti_nama']; ?></strong> <?php echo $not['noti_ket']; ?></div></a>
+                                            <a href="admin/notifikasi/baca/<?php echo $not['noti_id']; ?>"><div class="alert alert-secondary alert-dismissible fade show">
+                                        <!-- <button class="close"><span aria-hidden="true">&times;</span> -->
+                                        <strong><?php echo $not['noti_nama']; ?></strong> <?php echo $not['noti_ket']; ?></div></a>
                                         <?php }else { ?>
                                             <div class="alert alert-secondary alert-dismissible fade show">
-                                        <button class="close"><span aria-hidden="true">&check;</span>
-                                        </button> <strong><?php echo $not['noti_nama']; ?></strong> <?php echo $not['noti_ket']; ?></div>
+                                        <!-- <button class="close"><span aria-hidden="true">&check;</span> -->
+                                         <strong><?php echo $not['noti_nama']; ?></strong> <?php echo $not['noti_ket']; ?></div>
                                         <?php } ?>
                                     <?php endforeach; ?>
                                 </div>
