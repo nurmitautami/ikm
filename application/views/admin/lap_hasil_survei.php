@@ -75,16 +75,6 @@
                                         </tr>
                                         <?php $i++; ?>
                                     <?php endforeach; ?>
-
-                                    <!-- Tambahkan baris total kepuasan -->
-                                    <tr>
-                                        <td colspan="2"><strong>Total Kepuasan</strong></td>
-                                        <td><strong><?php echo $totalSangatPuas; ?></strong></td>
-                                        <td><strong><?php echo $totalPuas; ?></strong></td>
-                                        <td><strong><?php echo $totalCukupPuas; ?></strong></td>
-                                        <td><strong><?php echo $totalTidakPuas; ?></strong></td>
-                                    </tr>
-
                                 <?php else: ?>
                                     <tr>
                                         <td colspan="6">No data available.</td>
