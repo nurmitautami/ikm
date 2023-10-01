@@ -18,25 +18,33 @@
                         <button type="submit" class="btn btn-primary" name="action" value="print">Print</button>
                     <?php echo form_close(); ?>
                     <div class="table-responsive">
-                        <table class="table table-striped table-bordered zero-configuration">
+                        <table class="table table-striped table-bordered">
                             <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Indeks Judul</th>
-                                    <th>Sangat Puas</th>
-                                    <th>Puas</th>
-                                    <th>Cukup Puas</th>
-                                    <th>Tidak Puas</th>
-                                </tr>
+                            <tr>
+                                <th class="text-center" rowspan="2">No</th>
+                                <th class="text-center" rowspan="2">Indeks Judul</th>
+                                <th class="text-center" colspan="2">Sangat Puas</th>
+                                <th class="text-center" colspan="2">Puas</th>
+                                <th class="text-center" colspan="2">Cukup Puas</th>
+                                <th class="text-center" colspan="2">Tidak Puas</th>
+                                <th class="text-center" rowspan="2">Total</th>
+                            </tr>
+                            <tr>
+                                <th class="text-center">∑</th>
+                                <th class="text-center">%</th>
+                                <th class="text-center">∑</th>
+                                <th class="text-center">%</th>
+                                <th class="text-center">∑</th>
+                                <th class="text-center">%</th>
+                                <th class="text-center">∑</th>
+                                <th class="text-center">%</th>
+                            </tr>
+                            </tr>
                             </thead>
                             <tbody>
                                 <?php if (!empty($grafik_data)): ?>
                                     <?php $i = 1; ?>
                                     <?php $dataPerJudul = array(); ?>
-                                    <?php $totalSangatPuas = 0; ?>
-                                    <?php $totalPuas = 0; ?>
-                                    <?php $totalCukupPuas = 0; ?>
-                                    <?php $totalTidakPuas = 0; ?>
 
                                     <?php foreach ($grafik_data as $data): ?>
                                         <?php
@@ -51,33 +59,36 @@
                                                     'Puas' => 0,
                                                     'Cukup Puas' => 0,
                                                     'Tidak Puas' => 0,
+                                                    'Total' => 0,
                                                 );
                                             }
 
                                             $dataPerJudul[$indeksJudul][$jawabJenis] = $total;
 
-                                            // Menghitung total kepuasan
-                                            $totalSangatPuas += ($jawabJenis === 'Sangat Puas') ? $total : 0;
-                                            $totalPuas += ($jawabJenis === 'Puas') ? $total : 0;
-                                            $totalCukupPuas += ($jawabJenis === 'Cukup Puas') ? $total : 0;
-                                            $totalTidakPuas += ($jawabJenis === 'Tidak Puas') ? $total : 0;
+                                            // Calculate the total respondents for this index
+                                            $dataPerJudul[$indeksJudul]['Total'] += $total;
                                         ?>
                                     <?php endforeach; ?>
 
                                     <?php foreach ($dataPerJudul as $indeksJudul => $dataJudul): ?>
                                         <tr>
-                                            <td><?php echo $i; ?></td>
+                                            <td class="text-center"><?php echo $i; ?></td>
                                             <td><?php echo $indeksJudul; ?></td>
-                                            <td><?php echo $dataJudul['Sangat Puas']; ?></td>
-                                            <td><?php echo $dataJudul['Puas']; ?></td>
-                                            <td><?php echo $dataJudul['Cukup Puas']; ?></td>
-                                            <td><?php echo $dataJudul['Tidak Puas']; ?></td>
+                                            <td class="text-center"><?php echo $dataJudul['Sangat Puas']; ?></td>
+                                            <td class="text-center"><?php echo round(($dataJudul['Sangat Puas'] / $dataJudul['Total']) * 100) . "%"; ?></td>
+                                            <td class="text-center"><?php echo $dataJudul['Puas']; ?></td>
+                                            <td class="text-center"><?php echo round(($dataJudul['Puas'] / $dataJudul['Total']) * 100) . "%"; ?></td>
+                                            <td class="text-center"><?php echo $dataJudul['Cukup Puas']; ?></td>
+                                            <td class="text-center"><?php echo round(($dataJudul['Cukup Puas'] / $dataJudul['Total']) * 100) . "%"; ?></td>
+                                            <td class="text-center"><?php echo $dataJudul['Tidak Puas']; ?></td>
+                                            <td class="text-center"><?php echo round(($dataJudul['Tidak Puas'] / $dataJudul['Total']) * 100) . "%"; ?></td>
+                                            <td class="text-center"><?php echo $dataJudul['Total']; ?></td>
                                         </tr>
                                         <?php $i++; ?>
                                     <?php endforeach; ?>
                                 <?php else: ?>
                                     <tr>
-                                        <td colspan="6">No data available.</td>
+                                        <td colspan="11">No data available.</td>
                                     </tr>
                                 <?php endif; ?>
                             </tbody>
